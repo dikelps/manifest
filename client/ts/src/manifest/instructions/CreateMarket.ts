@@ -55,7 +55,9 @@ export const createMarketInstructionDiscriminator = 0;
  */
 export function createCreateMarketInstruction(
   accounts: CreateMarketInstructionAccounts,
-  programId = new web3.PublicKey('MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms'),
+  programId = new web3.PublicKey(
+    'HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ',
+  ),
 ) {
   const [data] = CreateMarketStruct.serialize({
     instructionDiscriminator: createMarketInstructionDiscriminator,

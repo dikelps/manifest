@@ -1,15 +1,20 @@
 use pinocchio::{account::AccountView, error::ProgramError, sysvars::rent::Rent, ProgramResult};
-use solana_program::{keccak, pubkey::Pubkey};
+use solana_program::{keccak, pubkey, pubkey::Pubkey};
 use solana_system_interface::instruction as system_instruction;
 
 use crate::{program::invoke_signed, validation::AccountViewExt};
 
-/// Canonical discriminant of the given struct. It is the hash of program ID and
-/// the name of the type.
+/// Upstream Manifest program ID retained as the ABI namespace. Keeping this
+/// namespace makes Makerbook account and event bytes compatible with Manifest
+/// while the runtime account owner remains Makerbook's distinct program ID.
+const ABI_NAMESPACE: Pubkey = pubkey!("MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms");
+
+/// Canonical discriminant of the given struct. It is the hash of the retained
+/// ABI namespace and the name of the type.
 pub fn get_discriminant<T>() -> Result<u64, ProgramError> {
     let type_name: &str = std::any::type_name::<T>();
     let discriminant: u64 = u64::from_le_bytes(
-        keccak::hashv(&[crate::ID.as_ref(), type_name.as_bytes()]).as_ref()[..8]
+        keccak::hashv(&[ABI_NAMESPACE.as_ref(), type_name.as_bytes()]).as_ref()[..8]
             .try_into()
             .map_err(|_| ProgramError::InvalidAccountData)?,
     );

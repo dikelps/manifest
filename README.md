@@ -1,3 +1,24 @@
+# Makerbook
+
+Makerbook is a narrowly modified [Manifest](https://github.com/Bonasa-Tech/manifest)
+program. It uses program ID
+`HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ` and admits only the compile-time
+maker `7Dzpq37VVnmar38oRvq5XhvfZXyg8DvHQRBUdxMiXBnb` to persistent maker state.
+Public takers continue to use the unchanged upstream `Swap` and `SwapV2` paths.
+
+The compiled key is the maker authority itself, not a market key or an
+administrator that delegates to other makers. The fork checks it at the
+existing `ClaimSeat` entry point because that is where persistent maker state
+is first created. After admission, deposits, withdrawals, order updates, and
+matching follow the ordinary upstream paths and remain bound to that same
+signer. There is no administrator registry, authorization transaction,
+private-market variant, or mutable allowlist. See
+[FORK_NOTICE.md](FORK_NOTICE.md) for the precise scope.
+The included client changes only its program-address binding; serialized
+instructions, accounts, and events retain their upstream form.
+
+The remainder of this document is the upstream Manifest documentation.
+
 # ![Logo](assets/manifest-wide.png)
 
 *The Unlimited Orderbook*

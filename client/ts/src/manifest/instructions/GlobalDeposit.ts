@@ -73,7 +73,9 @@ export const globalDepositInstructionDiscriminator = 9;
 export function createGlobalDepositInstruction(
   accounts: GlobalDepositInstructionAccounts,
   args: GlobalDepositInstructionArgs,
-  programId = new web3.PublicKey('MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms'),
+  programId = new web3.PublicKey(
+    'HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ',
+  ),
 ) {
   const [data] = GlobalDepositStruct.serialize({
     instructionDiscriminator: globalDepositInstructionDiscriminator,

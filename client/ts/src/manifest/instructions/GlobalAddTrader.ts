@@ -43,7 +43,9 @@ export const globalAddTraderInstructionDiscriminator = 8;
  */
 export function createGlobalAddTraderInstruction(
   accounts: GlobalAddTraderInstructionAccounts,
-  programId = new web3.PublicKey('MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms'),
+  programId = new web3.PublicKey(
+    'HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ',
+  ),
 ) {
   const [data] = GlobalAddTraderStruct.serialize({
     instructionDiscriminator: globalAddTraderInstructionDiscriminator,
