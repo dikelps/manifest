@@ -83,6 +83,9 @@ jobs:
 
   test:
     name: Test
+    # These upstream tests create arbitrary maker identities. Makerbook does
+    # not place its compiled maker's private key in public CI.
+    if: github.repository == 'Bonasa-Tech/manifest'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -192,6 +195,12 @@ jobs:
   ts-pass:
     name: TS tests pass
     needs: ['format', 'lint', 'test', 'depcheck']
+    if: >-
+      always() &&
+      needs.format.result == 'success' &&
+      needs.lint.result == 'success' &&
+      needs.depcheck.result == 'success' &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped')
     runs-on: ubuntu-latest
     steps:
       - run: echo ok

@@ -59,8 +59,9 @@ jobs:
   benchmark:
     name: Benchmark CU
     # The private harness needs MANIFEST_PAT, which pull requests from forks
-    # cannot access.
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    # cannot access. This repository is itself a public fork, so do not make
+    # its CI depend on Bonasa-Tech's private benchmark repository or secrets.
+    if: github.repository == 'Bonasa-Tech/manifest' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     permissions:
       contents: read

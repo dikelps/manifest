@@ -15,6 +15,9 @@ on:
 
 jobs:
   radar:
+    # Auditware Radar is configured for the upstream repository. Do not report
+    # a missing fork integration as a security-scan result.
+    if: github.repository == 'Bonasa-Tech/manifest'
     runs-on: ubuntu-latest
     permissions:
       security-events: write

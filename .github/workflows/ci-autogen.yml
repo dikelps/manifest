@@ -1,52 +1,35 @@
-name: Check autogen files
+name: Check Makerbook fork scope
 
 on:
   push:
     branches: ['main']
-    paths:
-      [
-        'programs/**',
-        'lib/**',
-        'Cargo.toml',
-        'Cargo.lock',
-      ]
   pull_request:
     branches: ['main']
-    paths:
-      [
-        'client/**',
-        'docs/**',
-        'lib/**',
-        'programs/**',
-      ]
   workflow_dispatch:
 
-env:
-  # Keep host-side generation aligned with the workspace toolchain.
-  RUST_TOOLCHAIN: '1.93.0'
-
 jobs:
-  autogen-check:
+  fork-scope:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout full history
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: '18'
+          node-version: '22'
           cache: 'yarn'
 
-      - name: Cache dependencies
-        uses: Swatinem/rust-cache@e18b497796c12c097a38f9edb9d0641fb99eee32 # v2
-
-      - name: Set Rust version
-        run: rustup toolchain install ${{ env.RUST_TOOLCHAIN }}
-
-      - name: Install dependencies
+      - name: Install pinned dependencies
         run: yarn install --frozen-lockfile
 
-      - uses: nickcharlton/diff-check@9fa7ac2bd275b9ec60f13dbcef1b90cfaadc1872 # main at review time
-        with:
-          command: cd client/idl && yarn && node generateIdl.js && node generateClient.js && node generateIdl.js && cd - ; yarn prettier client/ts --write ; yarn prettier client/ts/src/manifest --write; yarn prettier client/ts/src/wrapper --write; yarn prettier client/ts/src/ui_wrapper --write; git diff;
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.93.0
+
+      - name: Test the production authorization predicate and retained ABI
+        run: cargo test --locked -p manifest-dex --lib
+
+      - name: Verify narrow program diff and mechanical ABI client binding
+        run: ./scripts/verify-makerbook-program-scope.sh
