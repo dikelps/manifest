@@ -1,9 +1,9 @@
 # Makerbook devnet validation
 
-This document records the reproducible build, deployment, and behavioral smoke
-test for the minimal single-maker fork. It is evidence for the exact devnet
-revision below; it is not a claim of mainnet readiness or an extension of the
-upstream audit.
+This document records the deployed binary's build provenance and the finalized
+transactions that exercise Makerbook's maker admission and public swap paths.
+The source revision, binary hash, authorities, and test coverage are listed
+below so each result can be verified independently.
 
 ## Build and deployment
 
@@ -31,10 +31,10 @@ Two independent clean clones at the source commit produced byte-identical ELF
 files. The executable was then dumped back from devnet; that dump was also
 byte-identical and had the same SHA-256.
 
-The upgrade authority is deliberately different from the compiled maker. The
-devnet authority is temporary. A mainnet deployment should replace it with the
-chosen cold multisig/timelock policy, or revoke it after stabilization; every
-upgrade would establish a new code revision and review boundary.
+This deployment is upgradeable under the listed authority, which is distinct
+from the compiled maker. Maker admission does not grant program upgrade
+authority. An upgrade can change executable behavior, so this evidence applies
+to the recorded binary hash and source revision.
 
 ## Behavioral smoke test
 
@@ -92,6 +92,8 @@ own review.
 
 This smoke test covers the authorization boundary, ordinary SPL Token custody,
 direct deposits/withdrawals, direct batch placement/cancellation, and both
-public swap account shapes. Token-2022 extensions, global orders, reverse
-orders, production load, and Jupiter indexing/integration remain separate test
-and review steps.
+public swap account shapes. Both recorded public swaps buy base with quote.
+These are direct on-chain smoke tests, not adapter quote-parity tests.
+Token-2022 extensions, global/reverse orders, opposite-direction swap coverage,
+production load, and Jupiter indexing are outside the recorded test coverage.
+The upstream audit does not cover Makerbook's authorization change.

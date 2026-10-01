@@ -7,8 +7,12 @@ readonly MAKERBOOK_PROGRAM_ID="HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ"
 
 git cat-file -e "${UPSTREAM_BASE}^{commit}"
 
+# Include shared code and build inputs: checking only the core src directory
+# would miss changes to the tree library, dependencies, or compiler settings.
 unexpected="$({
-  git diff --name-only "${UPSTREAM_BASE}" -- programs/manifest/src
+  git diff --name-only "${UPSTREAM_BASE}" -- \
+    programs/manifest lib Cargo.toml Cargo.lock \
+    rust-toolchain rust-toolchain.toml .cargo
 } | while IFS= read -r path; do
   case "${path}" in
     programs/manifest/src/lib.rs | \
@@ -22,7 +26,7 @@ unexpected="$({
 done)"
 
 if [[ -n "${unexpected}" ]]; then
-  printf 'Unexpected on-chain source changes relative to %s:\n%s\n' \
+  printf 'Unexpected core source or build-input changes relative to %s:\n%s\n' \
     "${UPSTREAM_BASE}" "${unexpected}" >&2
   exit 1
 fi
@@ -49,4 +53,4 @@ if ! diff -qr \
   exit 1
 fi
 
-printf 'Makerbook diff is confined to program identity, ABI namespace, maker authorization, and mechanical client binding.\n'
+printf 'Core/build-input changes are limited to the three reviewed Makerbook source files; generated bindings match the program-ID substitution.\n'
