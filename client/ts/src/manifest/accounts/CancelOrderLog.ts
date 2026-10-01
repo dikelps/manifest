@@ -97,7 +97,7 @@ export class CancelOrderLog implements CancelOrderLogArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms',
+      'HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ',
     ),
   ) {
     return beetSolana.GpaBuilder.fromStruct(programId, cancelOrderLogBeet);

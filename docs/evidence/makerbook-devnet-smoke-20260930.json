@@ -1,0 +1,46 @@
+{
+  "schema": "makerbook.devnet-smoke.v1",
+  "generatedAt": "2026-09-30T21:34:53.438Z",
+  "rpcEndpoint": "https://solana-devnet.g.alchemy.com/v2/<redacted>",
+  "programId": "HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ",
+  "payer": "FGn9cGBibDKWRnQLb2EmvGHfnz6AJbMrtyz3YJUQ3ZxG",
+  "authorizedMaker": "7Dzpq37VVnmar38oRvq5XhvfZXyg8DvHQRBUdxMiXBnb",
+  "unauthorizedMaker": "8hjojsdPm3wNJjik5WCH46CAynPkBqPsnqc68AKBocCi",
+  "publicTaker": "3dLddG5R9n2tBpVkBA3TT2mpfRA487eercETiUPoomFz",
+  "market": "2ECnMaB9DYGEENVBLzVkHi4NTwwdqccWdCWLiEMWjZGa",
+  "baseMint": "1MJCFRVWa7rcZMYV4LbfCxi9wesdsTyVt5HENJ4bXJM",
+  "quoteMint": "23pqoV6r9JLSxPdJx11ZeDUpVPaxrN2x8B5CBAhVcHuU",
+  "signatures": {
+    "fundActors": "3coXwTjPvHxuJWjCdeauCkJaKX7UhCYgVDGKC7scbaJ8ZYkTBnaa2dd1TDyc45e293AxjEYRs9e6iHS6sXpzmigc",
+    "createMarket": "3xdbQ1n4C1GEvNTz5xsdX4J7PvWNPjPNmvE9P8oivKudjYJx7LHWgYfS7vqjJjVYa9tdNgiPGNiAcBJRdbKAzGfK",
+    "unauthorizedClaimSeat": "5uZYGE2by3UZb6i2MysjZ8ppA3phPHjAfhyGtg5NB2DYEwu5aHqg1JjAAbbtHgzSaESi9tQHL2LPwtw1MEjkK2T6",
+    "authorizedClaimSeat": "2ofNQL2VKhmUUZHec4XzS8NeWx1fRZ2ktrvZv8hLW3tHrunZHrUe2cGosABkvMoHmYwjauBq7pKt6HTribUn2t9s",
+    "deposit": "N8oTtqoJk8ehjbVUzX6LidxXutYqfPSphW7TPAn8G6faC58tex3TVQfrmSUgFRYPi2DsZdjxtLfETcdxYHrTtZx",
+    "batchPlace": "3UZ6SvQmpm3Q1q5d1enMgek28DUyawjjk6yyLPoXMSLTsRFyZFuBUGwxwxsP95YsMY7XpZeQ5hh4RG7K2KmpniDD",
+    "publicSwap": "3K3DQ5kTBesVpTcsEWnZ4q3VBwja5F7MPyVd5qmuWE6x6PSXre7dAUqM7WNfW76w7b4vquVjpUQN88r5tLLWsaje",
+    "publicSwapV2": "3sqxoUgTxK1DTxi38qEULXzNPaHm93SBwbAyCdYJR51G5fRMbbsBWfWjPjX2htMgs4pBvdods39eqTXitgigCcgy",
+    "batchCancel": "tgdpym4mVJoUshY8YxVrwQxFXaabe74fw54hWc3CfpcEh14ziCGrdMTTmp2K4F3Exk3Wj1vmG6S1wwx9KbomyH8",
+    "withdraw": "2rLX1HL2k7BefxYatVx4oKeFh3kM3Q23f1kQmtnA6So4vwRtjLWuTP5JcZA42jdBcVyxUXReADDF7yvJq4wNsh4W"
+  },
+  "assertions": {
+    "programExecutable": true,
+    "unauthorizedClaimRejected": true,
+    "unauthorizedSeatAbsent": true,
+    "authorizedClaimSucceeded": true,
+    "authorizedSeatPresent": true,
+    "directDepositSucceeded": true,
+    "directBatchPlaceSucceeded": true,
+    "publicSwapSucceeded": true,
+    "publicSwapV2Succeeded": true,
+    "publicTakerSeatRemoved": true,
+    "directBatchCancelSucceeded": true,
+    "directWithdrawSucceeded": true
+  },
+  "final": {
+    "makerBaseWalletAtoms": "18000000",
+    "makerQuoteWalletAtoms": "44000000",
+    "takerBaseWalletAtoms": "2000000",
+    "takerQuoteWalletAtoms": "6000000",
+    "openOrderCount": 0
+  }
+}

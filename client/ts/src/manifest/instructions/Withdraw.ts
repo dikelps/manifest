@@ -72,7 +72,9 @@ export const withdrawInstructionDiscriminator = 3;
 export function createWithdrawInstruction(
   accounts: WithdrawInstructionAccounts,
   args: WithdrawInstructionArgs,
-  programId = new web3.PublicKey('MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms'),
+  programId = new web3.PublicKey(
+    'HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ',
+  ),
 ) {
   const [data] = WithdrawStruct.serialize({
     instructionDiscriminator: withdrawInstructionDiscriminator,

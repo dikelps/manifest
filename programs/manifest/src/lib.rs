@@ -34,14 +34,12 @@ use solana_security_txt::security_txt;
 
 #[cfg(not(feature = "no-entrypoint"))]
 security_txt! {
-    name: "manifest",
-    project_url: "https://manifest.trade",
-    contacts: "email:dev@manifest.trade",
+    name: "makerbook",
+    project_url: "https://github.com/dikelps/manifest",
+    contacts: "link:https://github.com/dikelps/manifest/issues",
     policy: "",
     preferred_languages: "en",
-    source_code: "https://github.com/Bonasa-Tech/manifest",
-    auditors: "Certora",
-    formal_verification: "https://manifest.trade/audit.pdf"
+    source_code: "https://github.com/dikelps/manifest"
 }
 
 // Overview of some economic disincentive security assumptions. There are
@@ -91,7 +89,7 @@ security_txt! {
 // transaction limit before an attacker is able to clear a substantial number of
 // seats in one transaction.
 
-declare_id!("MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms");
+declare_id!("HcdpMTGRaKNaZEzRiPWyegVMzbw1rK92zhf6uDgBfGzJ");
 
 #[cfg(not(feature = "no-entrypoint"))]
 pinocchio::program_entrypoint!(process_instruction, {
